@@ -47,9 +47,9 @@ jobs:
 
       - name: Create tmp database
         run: |
-          PGPASSWORD=postgres psql -h postgres -U postgres -c 'CREATE USER tmp'
-          PGPASSWORD=postgres psql -h postgres -U postgres -c 'CREATE DATABASE tmp'
-          PGPASSWORD=postgres psql -h postgres -U postgres -c 'GRANT ALL PRIVILEGES ON DATABASE tmp TO tmp'
+          PGPASSWORD=postgres psql -h localhost -U postgres -c 'CREATE USER tmp'
+          PGPASSWORD=postgres psql -h localhost -U postgres -c 'CREATE DATABASE tmp'
+          PGPASSWORD=postgres psql -h localhost -U postgres -c 'GRANT ALL PRIVILEGES ON DATABASE tmp TO tmp'
 
       - name: Checkout main
         uses: actions/checkout@v3
