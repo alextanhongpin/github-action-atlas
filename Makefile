@@ -1,4 +1,6 @@
-include .env
+# The `-` makes the .env optional, because in CI (Github Action) we do not have
+# a copy of the .env file.
+-include .env
 export
 
 
