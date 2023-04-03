@@ -3,6 +3,11 @@ pg_conn_tmp := postgres://$(DB_USER):$(DB_PASS)@$(DB_HOST):$(DB_PORT)/tmp?sslmod
 atlas := docker run --rm --net=host --volume=$(PWD)/schemas:/schemas arigaio/atlas:0.10.0-alpine
 
 
+# Alternative is to install this, but using the docker image is preferred.
+atlas-install:
+	@go install ariga.io/atlas/cmd/atlas@latest
+
+
 atlas-help:
 	@docker run --rm arigaio/atlas:0.10.0-alpine --help
 

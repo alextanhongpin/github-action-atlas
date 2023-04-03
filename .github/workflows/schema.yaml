@@ -63,20 +63,10 @@ jobs:
           DB_HOST: localhost
           DB_PORT: ${{ job.services.postgres.ports[5432] }}
           DB_USER: postgres
-          DB_PASSS: postgres
+          DB_PASS: postgres
 
       - name: Checkout current branch
         uses: actions/checkout@v3
-
-      - name: Setup latest go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.20'
-          check-latest: true
-
-      - name: Install atlas
-        run: go install ariga.io/atlas/cmd/atlas@latest
-
 
       - name: Check for diff in schema between main branch and current branch
         # We continue even if error code 1 is returned.
@@ -84,6 +74,12 @@ jobs:
         #https://stackoverflow.com/questions/69182773/how-to-exclude-an-exit-code-in-github-actions-workflow-result-status
         #continue-on-error: true
         run: make atlas-diff
+        env:
+          DB_NAME: test
+          DB_HOST: localhost
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
+          DB_USER: postgres
+          DB_PASS: postgres
 
       - name: Create comment
         uses: thollander/actions-comment-pull-request@v2
