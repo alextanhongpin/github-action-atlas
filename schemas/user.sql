@@ -4,6 +4,8 @@ create table users (
 	-- WARN: Seems like atlas can't recognize extension like citext.
 	-- email citext not null,
 	email text not null,
+	created_at timestamptz not null default current_timestamp,
+	updated_at timestamptz not null default current_timestamp,
 	primary key (id),
 	unique (name),
 	unique (email)
