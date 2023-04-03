@@ -45,16 +45,13 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Set up psql
-        run: |
-          apt-get update
-          apt-get install --yes --no-install-recommends postgresql-client
-
       - name: Create tmp database
         run: |
           psql -h postgres -U postgres -c 'CREATE USER tmp'
           psql -h postgres -U postgres -c 'CREATE DATABASE tmp'
           psql -h postgres -U postgres -c 'GRANT ALL PRIVILEGES ON DATABASE tmp TO tmp'
+        env:
+          PGPASSWORD=postgres
 
       - name: Checkout main
         uses: actions/checkout@v3
