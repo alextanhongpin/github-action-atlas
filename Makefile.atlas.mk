@@ -22,7 +22,7 @@ atlas-diff: atlas-hash
 
 
 # Applies the migration.
-atlas-migrate:
+atlas-migrate: atlas-hash
 	@$(atlas) schema apply \
 		--url $(pg_conn_dev) \
 		--to file://schemas \
@@ -31,7 +31,7 @@ atlas-migrate:
 		--auto-approve
 
 
-atlas-migrate-dry-run:
+atlas-migrate-dry-run: atlas-hash
 	@$(atlas) schema apply \
 		--url $(pg_conn_dev) \
 		--to file://schemas \
